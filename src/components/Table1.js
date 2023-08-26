@@ -3,18 +3,18 @@ import React from 'react'
 
 const Table1=(props)=>{
     const deleteItem=(event)=>{
-       const afterdel=props.table.filter((item)=>{
+        const deleted=JSON.parse(localStorage.getItem(event.target.id))
+       const afterdel=props.product.filter((item)=>{
         return item.id!==event.target.id
        })
        localStorage.removeItem(event.target.id)
-       props.fun(afterdel,'table1')
+       props.fun(afterdel,deleted.price)
     
     }
   return(
     <div>
-        <label><h2>Table1</h2></label>
        <ul>
-        {props.table.map(item=><li key={item.id}>{item.price}-{item.table}-{item.dish}<button onClick={deleteItem} id={item.id}>Delete</button></li>)}
+        {props.product.map(item=><li key={item.id}>{item.price} - {item.product}   <button onClick={deleteItem} id={item.id}>Delete</button></li>)}
        </ul>
     </div>
   );
